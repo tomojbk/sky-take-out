@@ -149,6 +149,11 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis.plus.version}</version>
             </dependency>
+<!--            &lt;!&ndash;Swagger用于生成、描述、调用和可视化 RESTful 风格的 Web 服务 &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.github.xiaoymin</groupId>-->
+<!--                <artifactId>knife4j-spring-boot-starter</artifactId>-->
+<!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 

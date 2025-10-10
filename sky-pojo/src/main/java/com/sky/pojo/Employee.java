@@ -19,7 +19,6 @@ public class Employee implements Serializable {
 
     private Long id;
 
-
     private String username;
 
     private String name;
@@ -33,7 +32,6 @@ public class Employee implements Serializable {
     private String idNumber;
 
     private Integer status;
-
 
     private LocalDateTime createTime;
 
