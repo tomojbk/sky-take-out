@@ -25,6 +25,8 @@ import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Slf4j
 @Service
 public class EmployeeServiceImpl  implements EmployeeService {
@@ -108,6 +110,48 @@ public class EmployeeServiceImpl  implements EmployeeService {
 
         //插入数据
         employeeMapper.insert(employee);
+    }
+
+    /**
+     * 分页查询
+     * @param employeePageQueryDTO
+     * @return
+     */
+    @Override
+    public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
+        /*
+        PageHelper
+        在执行具体查询操作之前，
+        通过调用 PageHelper.startPage(int pageNum, int pageSize) 来设置当前页数和页面大小
+         */
+        PageHelper.startPage(employeePageQueryDTO.getPage(),employeePageQueryDTO.getPageSize());
+        /*
+        Page
+        Page<T> 是 ArrayList<T> 的子类，因此它既是一个列表，也包含了分页相关信息
+        它继承自 com.github.pagehelper.PageInfo 的部分特性，用来保存分页查询后的结果集
+        封装分页查询的结果数据
+        提供分页相关的信息，如总记录数、总页数、当前页码等
+        与 PageHelper.startPage() 配合使用实现物理分页
+        pageNum: 当前页码
+        pageSize: 每页显示数量
+        total: 总记录数
+        pages: 总页数
+        list: 当前页数据列表
+         */
+        Page<Employee> page =employeeMapper.pageQuery(employeePageQueryDTO);
+        /*
+        getTotal() 方法
+        作用：获取分页查询的总记录数
+        返回类型：long 或 int
+        使用场景：通常在 PageInfo 对象中调用，用于获取数据库中符合条件的总记录数
+        getResult() 方法
+        作用：获取分页查询的结果列表
+        返回类型：List<T>，其中 T 是具体的实体类型
+        使用场景：获取当前页的数据列表
+         */
+        long total = page.getTotal();
+        List<Employee> records = page.getResult();
+        return new PageResult(total,records);
     }
 
 
