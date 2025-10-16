@@ -159,5 +159,20 @@ public class EmployeeServiceImpl  implements EmployeeService {
         employeeMapper.startOrStop(status,id);
     }
 
+    @Override
+    public Employee getById(Long id) {
+       Employee employee = employeeMapper.getById(id);
+       employee.setPassword("*****");
+       return employee;
+    }
+
+    @Override
+    public void update(Employee employee) {
+        employee.setUpdateTime(LocalDateTime.now());
+        //设置修改人id
+        employee.setUpdateUser(BaseContext.getCurrentId());
+        employeeMapper.update(employee);
+    }
+
 
 }

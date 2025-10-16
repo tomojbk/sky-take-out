@@ -13,4 +13,34 @@
         order by create_time desc
     </select>
 
+<!--    parameterType作用：-->
+<!--    指定传递给 SQL 语句的参数类型-->
+<!--    帮助 MyBatis 理解如何处理传入的参数-->
+    <!-- 基本数据类型 -->
+<!--    parameterType="int"-->
+<!--    parameterType="java.lang.Integer"-->
+<!--     实体类 -->
+<!--    parameterType="com.sky.pojo.Employee"-->
+<!--    Map类型-->
+<!--    parameterType="map"-->
+<!--    字符串 -->
+<!--    parameterType="string"-->
+    <update id="update" parameterType="com.sky.pojo.Employee">
+    update employee
+    <set>
+        <if test="name!=null">name = #{name},</if>
+        <if test="username!=null" >username = #{username},</if>
+        <if test="phone!=null" >phone = #{phone},</if>
+        <if test="sex!=null" >sex = #{sex},</if>
+        <if test="idNumber!=null" >id_number = #{idNumber},</if>
+        <if test="updateUser!=null" >update_user = #{updateUser},</if>
+        <if test="updateTime!=null">update_time = #{updateTime},</if>
+        <if test="status != null">status = #{status},</if>
+    </set>
+        <where>
+            id=#{id}
+        </where>
+
+    </update>
+
 </mapper>
