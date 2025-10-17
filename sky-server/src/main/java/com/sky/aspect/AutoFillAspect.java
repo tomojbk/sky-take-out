@@ -69,7 +69,7 @@ public class AutoFillAspect {
                 Method setUpdateUser = clazz.getMethod(AutoFillConstant.SET_UPDATE_USER, Long.class);
                 //调用方法
                 setCreateUser.invoke(entity, BaseContext.getCurrentId());
-                setUpdateTime.invoke(entity, BaseContext.getCurrentId());
+                setUpdateUser.invoke(entity, BaseContext.getCurrentId());
                 setCreateTime.invoke(entity, LocalDateTime.now());
                 setUpdateTime.invoke(entity, LocalDateTime.now());
             } else if (operationType == OperationType.UPDATE) {
