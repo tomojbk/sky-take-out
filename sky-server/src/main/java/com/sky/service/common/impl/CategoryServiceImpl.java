@@ -2,11 +2,13 @@ package com.sky.service.common.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sky.annotation.AutoFill;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.context.BaseContext;
 import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
+import com.sky.enumeration.OperationType;
 import com.sky.exception.DeletionNotAllowedException;
 import com.sky.mapper.common.CategoryMapper;
 import com.sky.mapper.common.DishMapper;
@@ -42,15 +44,16 @@ public class CategoryServiceImpl implements CategoryService {
      * 新增分类
      * @param categoryDTO
      */
+   // @AutoFill(OperationType.INSERT)
     public void save(CategoryDTO categoryDTO) {
         Category category = new Category();
         //属性拷贝
         BeanUtils.copyProperties(categoryDTO, category);
         //设置时间和操作人
-        category.setCreateTime(LocalDateTime.now());
-        category.setUpdateTime(LocalDateTime.now());
-        category.setCreateUser(BaseContext.getCurrentId());
-        category.setUpdateUser(BaseContext.getCurrentId());
+//        category.setCreateTime(LocalDateTime.now());
+//        category.setUpdateTime(LocalDateTime.now());
+//        category.setCreateUser(BaseContext.getCurrentId());
+//        category.setUpdateUser(BaseContext.getCurrentId());
 
         //分类状态默认为禁用状态0
         category.setStatus(StatusConstant.DISABLE);
@@ -99,11 +102,12 @@ public class CategoryServiceImpl implements CategoryService {
      * 修改分类
      * @param categoryDTO
      */
+   // @AutoFill(OperationType.UPDATE)
     public void update(CategoryDTO categoryDTO) {
         Category category = new Category();
         //设置修改时间和修改人
-        category.setUpdateTime(LocalDateTime.now());
-        category.setUpdateUser(BaseContext.getCurrentId());
+//        category.setUpdateTime(LocalDateTime.now());
+//        category.setUpdateUser(BaseContext.getCurrentId());
         BeanUtils.copyProperties(categoryDTO,category);
         categoryMapper.update(category);
 
