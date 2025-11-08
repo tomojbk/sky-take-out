@@ -141,5 +141,10 @@ public class DishServiceImpl implements DishService {
 
     }
 
+    @Override
+    public void updateById(Integer status, Long id) {
+        dishMapper.updateById(status,id);
+    }
+
 
 }

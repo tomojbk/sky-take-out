@@ -46,4 +46,6 @@ public interface DishService {
      */
     void update(DishVO dishVO);
 
+
+    void updateById(Integer status, Long id);
 }

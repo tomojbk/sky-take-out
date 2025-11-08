@@ -43,4 +43,7 @@ public interface DishMapper {
 
     @AutoFill(OperationType.UPDATE)
     void update(DishVO dishVO);
+
+
+    void updateById(Integer status, Long id);
 }
