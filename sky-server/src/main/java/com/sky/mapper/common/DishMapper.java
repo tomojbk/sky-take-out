@@ -5,8 +5,11 @@ import com.sky.annotation.AutoFill;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.enumeration.OperationType;
 import com.sky.pojo.Dish;
+import com.sky.vo.DishVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface DishMapper {
@@ -31,4 +34,13 @@ public interface DishMapper {
      * @param dishPageQueryDTO
      */
     Page<Dish> pageQuery(DishPageQueryDTO dishPageQueryDTO);
+
+    Integer selectCountByIdsAndStatus(List<Integer> ids, Integer status);
+
+    void deleteByIds( List<Integer> ids);
+
+    DishVO findById(Integer dishId);
+
+    @AutoFill(OperationType.UPDATE)
+    void update(DishVO dishVO);
 }

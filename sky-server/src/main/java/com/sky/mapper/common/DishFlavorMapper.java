@@ -18,4 +18,8 @@ public interface DishFlavorMapper {
      * @param flavors
      */
     void insertBatch(List<DishFlavor> flavors);
+
+    void deleteByDishIds( List<Integer>  ids);
+
+    List<DishFlavor> findTasteByDishId(Integer dishId);
 }
